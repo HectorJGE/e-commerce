@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% block title %}{{producto_detalle.nombre_producto}}{% endblock %}
+{% block body_block %}
+
+  <h1>Producto</h1>
+  <h2 class="m-3">{{producto_detalle.nombre_producto}}</h2>
+    {% if producto_detalle.cantidad_stock < 1 %}
+    <p class="card-text text-danger">Sin stock</p>
+    {% else %}
+    <p class="card-text text-success">Disponible</p>
+    {% endif %}
+  <img class="img-thumbnail img-producto h-200px my-3"  src="{{ producto_detalle.imagen_producto.url }}" alt="Imagen no carga">
+    <p class="card-text">Descripcion: {{producto_detalle.descripcion_producto}}</p>
+    <p class="card-text">Precio: {{producto_detalle.precio_venta}}</p>
+
+{% endblock %}

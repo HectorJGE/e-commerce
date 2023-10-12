@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends "base/base.html" %}
+{% block title %}Productos{% endblock %}
+{% block body_block %}
+      <h1>Productos</h1>
+      <form action="?" method="GET" class="d-flex" role="search">
+        <input name="producto" autocomplete="off" class="form-control mx-3" type="search" placeholder="Buscar producto..." aria-label="Search">
+        <button class="btn btn-outline-primary mx-3" type="submit">Search</button>
+      </form>
+        <div class="d-flex row row-cols-2 row-cols-lg-5 g-2 g-lg-3 ">
+          {% for prod in ProductosList %}
+            <div class="card col-auto m-3" style="width: 13rem;">
+              <img class="card-img-top h-200px"  src="{{ prod.imagen_producto.url }}" alt="Imagen no carga">
+              <div class="card-body">
+                <h5 class="card-title titulo-p"><a href="{% url 'detalle' prod.pk %}">{{prod.nombre_producto}}</a></h5>
+                <p class="card-text">Precio: {{prod.precio_venta}}</p>
+
+                {% if prod.cantidad_stock < 1 %}
+                <p class="card-text text-danger">Sin stock</p>
+                  {{form}}
+                  <input class="mt-3 btn btn-primary" type="submit" value="Agregar al carrito" disabled>
+                {% else %}
+                <p class="card-text text-success">Disponible</p>
+                  <form action="{% url 'add_carrito' prod.pk %}" method="post">
+                  <select name="cantidad">
+                    {% with ''|center:prod.cantidad_stock as range %}
+                    {% for _ in range %}
+                        <option>{{ forloop.counter }}</option>
+                    {% endfor %}
+                    {% endwith %}
+                  </select>
+                  {% csrf_token %}
+                  <input class="mt-3 btn btn-primary" type="submit" value="Agregar al carrito" >
+                </form>
+
+                {% endif %}
+
+              </div>
+            </div>
+          {% endfor %}
+
+      </div>
+{% endblock %}

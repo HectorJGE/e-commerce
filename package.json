@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "datatables": "^1.10.18",
+    "jquery": "^3.6.3"
+  }
+}

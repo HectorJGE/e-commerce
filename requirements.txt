@@ -1,0 +1,5 @@
+django
+pillow
+django-datatable-view==2.1.6
+coverage==7.0.0
+psycopg2

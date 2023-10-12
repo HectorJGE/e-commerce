@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "base/base.html" %}
+{% block title %}Detalle Pedido{% endblock %}
+{% load static %}
+{% block extrahead %}
+  <!-- Load dependencies -->
+  <script src="{% static '/node_modules/jquery/dist/jquery.min.js' %}" type="text/javascript"></script>
+<link rel="stylesheet" href="{% static '/node_modules/datatables/media/css/jquery.dataTables.min.css' %}" type="text/css">
+<script type="text/javascript" charset="utf8" src="{% static '/node_modules/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+<!-- Load js for initializing tables via their server-side options -->
+<script type="text/javascript" charset="utf8" src="{% static 'js/datatableview.js' %}"></script>
+<script type="text/javascript">
+
+    $(function(){
+        datatableview.initialize($('.datatable'));
+    })
+</script>
+{% endblock %}
+{% block body_block %}
+<h1 class="p-3">Detalle Pedido - ID: {{ pedido_detalle.pk }}</h1>
+<h3>Cliente: {{ pedido_detalle.carrito.cliente_carrito }}</h3>
+     {{ datatable }}
+  <h3>Total: {{ pedido_detalle.total_pedido }}</h3>
+
+{% endblock %}

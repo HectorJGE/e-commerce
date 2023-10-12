@@ -1,0 +1,8 @@
+.idea/
+__pycache__/
+media/
+db.sqlite3
+scp/__pycache__/
+scp_app/__pycache__/
+scp_app/migrations/__pycache__/
+static/node_modules/
